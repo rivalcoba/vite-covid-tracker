@@ -1,0 +1,13 @@
+<script setup>
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import TheHeader from "./components/TheHeader.vue";
+</script>
+
+<template>
+  <div class="container">
+    <!-- COVID TRACKER -->
+    <TheHeader></TheHeader>
+  </div>
+  <!-- <h1 class="text-3xl font-bold text-center">🌬 Hello Tailwind!</h1> -->
+</template>
