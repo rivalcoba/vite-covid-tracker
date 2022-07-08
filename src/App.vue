@@ -9,5 +9,4 @@ import TheHeader from "./components/TheHeader.vue";
     <!-- COVID TRACKER -->
     <TheHeader></TheHeader>
   </div>
-  <!-- <h1 class="text-3xl font-bold text-center">🌬 Hello Tailwind!</h1> -->
 </template>

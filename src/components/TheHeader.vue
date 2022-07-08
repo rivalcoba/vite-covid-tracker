@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="">
     <p>
       Estadisticas COVID-19 🦠
     </p>
