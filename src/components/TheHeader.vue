@@ -1,7 +1,7 @@
 <template>
   <header class="text-center bg-blue-800 text-white p-4 mb-10">
     <div class="text-3xl md:text-5xl font-bold mb-3">
-      Estadisticas COVID-19 🦠
+      Estadísticas COVID-19 🦠
     </div>
     <p>
       API por
