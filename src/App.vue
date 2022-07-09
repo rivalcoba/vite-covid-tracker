@@ -1,6 +1,7 @@
 <script setup>
 import TheHeader from "./components/TheHeader.vue";
 import TheTitle from "./components/TheTitle.vue"
+import DataDisplay from "./components/DataDisplay.vue";
 // App State
 import loadingImage from "./assets/loading.gif";
 import { reactive } from "vue";
@@ -30,10 +31,12 @@ async function fetchCovidData() {
 <template>
   <!-- App Header -->
   <TheHeader />
-  <!-- Title Section -->
   <main 
     class="text-center" v-if="!state.loading">
+    <!-- Title Section -->
     <TheTitle :title="state.title" :dataDate="state.dataDate"/>
+    <!-- Data Section -->
+    <DataDisplay data="Texto de prueba"/>
   </main>
   <main 
     class="flex flex-col align-center justify-center text-center" v-else>
