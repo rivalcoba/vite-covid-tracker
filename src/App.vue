@@ -38,7 +38,7 @@ async function fetchCovidData() {
   <main 
     class="flex flex-col align-center justify-center text-center" v-else>
   <div class="text-gray-500 text-3xl mt-10 mb-6">
-    Fetching Data
+    Recolectando Datos 📥
   </div>
   <img 
     src="./assets/loading.gif" 
