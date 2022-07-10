@@ -7,11 +7,11 @@
       </h3>
       <div class="text-2xl mb-4">
         <span class="font-bold">Nuevos:</span>
-        {{ data.NewConfirmed }}
+        {{ NewConfirmed }}
       </div>
       <div class="text-2xl mb-4">
         <span class="font-bold">Totales:</span>
-        {{ data.TotalConfirmed }}
+        {{ TotalConfirmed }}
       </div>
     </div>
     <!-- BOX 2 -->
@@ -21,17 +21,26 @@
       </h3>
       <div class="text-2xl mb-4">
         <span class="font-bold">Nuevos:</span>
-        {{ data.NewDeaths }}
+        {{ NewNewDeaths }}
       </div>
       <div class="text-2xl mb-4">
         <span class="font-bold">Totales:</span>
-        {{ data.TotalDeaths }}
+        {{ TotalDeaths }}
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+// Importando Computed
+import { computed } from "vue";
 // Definiendo Propiedad de entrada
 const props = defineProps(['data']);
+// Number separator
+const numberWithCommas = (number) => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+// Computed Properties
+const NewConfirmed = computed(()=>numberWithCommas(props.data.NewConfirmed));
+const TotalConfirmed = computed(()=>numberWithCommas(props.data.TotalConfirmed));
+const NewNewDeaths = computed(()=>numberWithCommas(props.data.NewDeaths));
+const TotalDeaths = computed(()=>numberWithCommas(props.data.TotalDeaths));
 </script>
