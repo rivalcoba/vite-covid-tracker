@@ -29,23 +29,25 @@ async function fetchCovidData() {
 </script>
 
 <template>
-  <!-- App Header -->
-  <TheHeader />
-  <main 
-    class="text-center" v-if="!state.loading">
-    <!-- Title Section -->
-    <TheTitle :title="state.title" :dataDate="state.dataDate"/>
-    <!-- Data Section -->
-    <DataDisplay data="Texto de prueba"/>
-  </main>
-  <main 
-    class="flex flex-col align-center justify-center text-center" v-else>
-  <div class="text-gray-500 text-3xl mt-10 mb-6">
-    Recolectando Datos 📥
+  <div class="container">
+    <!-- App Header -->
+    <TheHeader />
+    <main 
+      class="text-center" v-if="!state.loading">
+      <!-- Title Section -->
+      <TheTitle :title="state.title" :dataDate="state.dataDate"/>
+      <!-- Data Section -->
+      <DataDisplay :data="state.stats"/>
+    </main>
+    <main 
+      class="flex flex-col align-center justify-center text-center" v-else>
+    <div class="text-gray-500 text-3xl mt-10 mb-6">
+      Recolectando Datos 📥
+    </div>
+    <img 
+      src="./assets/loading.gif" 
+      alt="Loading Image"
+      class="w-24 m-auto">
+    </main>
   </div>
-  <img 
-    src="./assets/loading.gif" 
-    alt="Loading Image"
-    class="w-24 m-auto">
-  </main>
 </template>
