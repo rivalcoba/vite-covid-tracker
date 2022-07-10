@@ -2,6 +2,7 @@
 import TheHeader from "./components/TheHeader.vue";
 import TheTitle from "./components/TheTitle.vue"
 import DataDisplay from "./components/DataDisplay.vue";
+import CountrySelect from "./components/CountrySelect.vue";
 // App State
 import loadingImage from "./assets/loading.gif";
 import { reactive } from "vue";
@@ -23,7 +24,7 @@ async function fetchCovidData() {
   const covidSummary = await fetchCovidData();
   state.dataDate = covidSummary.Date;
   state.stats = covidSummary.Global;
-  state.countries = covidSummary.countries;
+  state.countries = covidSummary.Countries;
   state.loading = false;
 })();
 </script>
@@ -38,6 +39,8 @@ async function fetchCovidData() {
       <TheTitle :title="state.title" :dataDate="state.dataDate"/>
       <!-- Data Section -->
       <DataDisplay :data="state.stats"/>
+      <!-- Country Selector -->
+      <CountrySelect :countries="state.countries"/>
     </main>
     <main 
       class="flex flex-col align-center justify-center text-center" v-else>
