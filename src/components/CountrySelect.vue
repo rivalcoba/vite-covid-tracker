@@ -1,5 +1,6 @@
 <template>
   <select
+    @change="updateSelection"
     v-model="selected"
     class="form-select mt-10 block w-full border p-3 rounded"
   >
@@ -13,9 +14,21 @@
 
 <script setup>
 // Importando funcion de referencia reactiva
-import { ref } from "vue";
+// emisión de eventos
+import { ref, defineEmits } from "vue";
 // Propiedades
 const props = defineProps(["countries"]);
 // State Selected in zero by default
 const selected = ref(0);
+// Emisión de eventos
+const emit = defineEmits(['getCountry']);
+// Metodo
+const updateSelection = () => {
+  // Buscando de la lista de paises aquel cuyo Id
+  // coincida con el seleccionado
+  const selectedCountry = props.countries.find((country) => {
+    return country.ID === selected.value;
+  });
+  emit('getCountry', selectedCountry);
+}
 </script>
