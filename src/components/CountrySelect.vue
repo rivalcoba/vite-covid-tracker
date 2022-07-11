@@ -21,7 +21,7 @@ const props = defineProps(["countries"]);
 // State Selected in zero by default
 const selected = ref(0);
 // Emisión de eventos
-const emit = defineEmits(['getCountry']);
+const emit = defineEmits(['countryChange']);
 // Metodo
 const updateSelection = () => {
   // Buscando de la lista de paises aquel cuyo Id
@@ -29,6 +29,6 @@ const updateSelection = () => {
   const selectedCountry = props.countries.find((country) => {
     return country.ID === selected.value;
   });
-  emit('getCountry', selectedCountry);
+  emit('countryChange', selectedCountry);
 }
 </script>

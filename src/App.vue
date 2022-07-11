@@ -1,3 +1,28 @@
+<template>
+  <div class="container">
+    <!-- App Header -->
+    <TheHeader />
+    <main 
+      class="text-center" v-if="!state.loading">
+      <!-- Title Section -->
+      <TheTitle :title="state.title" :dataDate="state.dataDate"/>
+      <!-- Data Section -->
+      <DataDisplay :data="state.stats"/>
+      <!-- Country Selector -->
+      <CountrySelect @countryChange="getCountryData" :countries="state.countries"/>
+    </main>
+    <main 
+      class="flex flex-col align-center justify-center text-center" v-else>
+    <div class="text-gray-500 text-3xl mt-10 mb-6">
+      Recolectando Datos 📥
+    </div>
+    <img 
+      src="./assets/loading.gif" 
+      alt="Loading Image"
+      class="w-24 m-auto">
+    </main>
+  </div>
+</template>
 <script setup>
 import TheHeader from "./components/TheHeader.vue";
 import TheTitle from "./components/TheTitle.vue"
@@ -20,6 +45,14 @@ async function fetchCovidData() {
   const data = await res.json();
   return data;
 }
+// Metodo para el cambio de pais
+function getCountryData(country) {
+  // Se actualizan las estadisticas a mostrar 
+  state.stats = country
+  // Se actualiza el titulo
+  state.title = country.Country;
+}
+
 (async () => {
   const covidSummary = await fetchCovidData();
   state.dataDate = covidSummary.Date;
@@ -28,29 +61,3 @@ async function fetchCovidData() {
   state.loading = false;
 })();
 </script>
-
-<template>
-  <div class="container">
-    <!-- App Header -->
-    <TheHeader />
-    <main 
-      class="text-center" v-if="!state.loading">
-      <!-- Title Section -->
-      <TheTitle :title="state.title" :dataDate="state.dataDate"/>
-      <!-- Data Section -->
-      <DataDisplay :data="state.stats"/>
-      <!-- Country Selector -->
-      <CountrySelect :countries="state.countries"/>
-    </main>
-    <main 
-      class="flex flex-col align-center justify-center text-center" v-else>
-    <div class="text-gray-500 text-3xl mt-10 mb-6">
-      Recolectando Datos 📥
-    </div>
-    <img 
-      src="./assets/loading.gif" 
-      alt="Loading Image"
-      class="w-24 m-auto">
-    </main>
-  </div>
-</template>
