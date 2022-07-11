@@ -10,7 +10,15 @@
       <DataDisplay :data="state.stats"/>
       <!-- Country Selector -->
       <CountrySelect @countryChange="getCountryData" :countries="state.countries"/>
+      <!-- Boton para limpiar busqueda -->
+      <button
+      @click="clearContrySelection"
+      v-if="state.stats.Country" 
+      class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600">
+        Limpiar Búsqueda
+      </button>
     </main>
+    <!-- Vista de carga de datos -->
     <main 
       class="flex flex-col align-center justify-center text-center" v-else>
     <div class="text-gray-500 text-3xl mt-10 mb-6">
@@ -53,11 +61,24 @@ function getCountryData(country) {
   state.title = country.Country;
 }
 
+function updateData(summary) {
+  state.dataDate = summary.Date;
+  state.stats = summary.Global;
+  state.countries = summary.Countries;
+  state.loading = false;
+}
+
+// Limpiando Selección
+const clearContrySelection = async () => {
+  state.loading = true;
+  state.title = "Global 🌍"
+  const covidSummary = await fetchCovidData();
+  updateData(covidSummary);
+}
+
+// Rutina de inicialización
 (async () => {
   const covidSummary = await fetchCovidData();
-  state.dataDate = covidSummary.Date;
-  state.stats = covidSummary.Global;
-  state.countries = covidSummary.Countries;
-  state.loading = false;
+  updateData(covidSummary);
 })();
 </script>
